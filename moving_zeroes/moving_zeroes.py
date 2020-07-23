@@ -3,24 +3,30 @@ Input: a List of integers
 Returns: a List of integers
 '''
 def moving_zeroes(arr):
-    # assign empty array to non_zero list
-    temp = [0] * len(arr) 
     # initialize index of arr and temp
-    i = j = 0
+    left = 0
+    right = len(arr) - 1
     # iterate through array
-    while i < len(arr):
-        # if i is not 0
-        if arr[i] != 0:
-            # assign value from arr to temp
-            temp[j] = arr[i]
-            # increment index for temp
-            j += 1
-        # increment index for arr
-        i += 1
-    # loop through temp and update arr with value from temp
-    for i in range(0, len(temp)):
-        arr[i] = temp[i]
-    # return mutated arr
+    while left <= right:
+        # if left is 0 and left is not 0
+        if arr[left] == 0 and arr[right] != 0:
+            # swap left with right
+            arr[left], arr[right] = arr[right], arr[left]
+            # increment left
+            left += 1
+            # decrement right
+            right -= 1
+        # otherwise
+        else:
+            # if left is not 0
+            if arr[left] != 0:
+                # increment left
+                left += 1
+            # if right is 0
+            if arr[right] == 0:
+                # decrement right
+                right -= 1
+    # return arr
     return arr
 
 
