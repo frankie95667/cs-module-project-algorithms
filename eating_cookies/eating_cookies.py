@@ -3,18 +3,18 @@ Input: an integer
 Returns: an integer
 '''
 
-def eating_cookies(n, cache={}):
+def eating_cookies(n, cache=None):
     if n < 0:
         return 0
     elif n == 0:
         return 1
-    elif n in cache:
+    elif cache is not None and cache[n] > 0:
         return cache[n]
-    else:
+    elif cache is not None:
         cache[n] = eating_cookies(n - 1, cache) + eating_cookies(n - 2, cache) + eating_cookies(n - 3, cache)
         return cache[n]
-    # else:
-    #     return eating_cookies(n - 1, cache) + eating_cookies(n - 2, cache) + eating_cookies(n - 3, cache)
+    else:
+        return eating_cookies(n - 1, cache) + eating_cookies(n - 2, cache) + eating_cookies(n - 3, cache)
 if __name__ == "__main__":
     # Use the main function here to test out your implementation
     num_cookies = 50
