@@ -4,19 +4,21 @@ Returns: an integer
 '''
 def single_number(arr):
     # assign empty array to single_ladies
-    single_ladies = []
+    single_ladies = {}
     # iterate through array
-    for i in range(0, len(arr)):
+    for num in arr:
     # if value at index i is in new list
-        if arr[i] in single_ladies:
+        if num in single_ladies:
             # remove i from new list
-            single_ladies.remove(arr[i])
+            single_ladies[num] += 1
         # else
         else:
             # append number to new list
-            single_ladies.append(arr[i])
+            single_ladies[num] = 1
         # return first index of new list
-    return single_ladies[0]
+    for key, value in single_ladies.items():
+        if value == 1:
+            return key
 
 
 if __name__ == '__main__':
